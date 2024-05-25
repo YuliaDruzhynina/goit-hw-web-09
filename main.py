@@ -23,11 +23,8 @@ for i in range(len(quotes)):
     }
     quotes_lst.append(quote_info)
 
-#print(json.dumps(quotes_lst, ensure_ascii=False, indent=4))
-
 author_links = soup.find_all("a", string='(about)', href=True)
 authors_lst=[]
-
 for link in author_links:
     author_url = link.get('href')
     full_author_url = url + author_url
@@ -39,7 +36,6 @@ for link in author_links:
     born_date = soup_author.find("span", class_="author-born-date")
     born_location = soup_author.find("span", class_="author-born-location")
     description = soup_author.find("div", class_="author-description")
-
     
     author_info= {
         'fullname': fullname.text,
@@ -53,25 +49,8 @@ for link in author_links:
     with open('authors.json', 'w') as file:
         json.dump(authors_lst, file, ensure_ascii=False, indent=4)
 
-
-# quotes_lst = []
-# for i in range(len(quotes)):
-#     tags_lst = []
-#     tagsforquote = tags[i].find_all("a", class_="tag")
-#     for tagforquote in tagsforquote:
-#         tags_lst.append(tagforquote.text)
-#     quote_info = {
-#         "tags": tags_lst,
-#         "author": authors[i].text,
-#         "quote": quotes[i].text,
-#     }
-#     quotes_lst.append(quote_info)
-# print(json.dumps(authors_lst, ensure_ascii=False, indent=4))
-    # with open('authors.json', 'w') as file:
-    #     json.dump(authors_lst, file, ensure_ascii=False, indent=4)
-
-# print(json.dumps(quotes_lst, ensure_ascii=False, indent=4))
-# with open('quotes.json', 'w') as file:
-#     json.dump(quotes_lst, file, ensure_ascii=False, indent=4)
+    # print(json.dumps(quotes_lst, ensure_ascii=False, indent=4))
+    with open('quotes.json', 'w') as file:
+        json.dump(quotes_lst, file, ensure_ascii=False, indent=4)
 
 
